@@ -10,6 +10,7 @@ func TestTLDomains(t *testing.T) {
 		{in: "mMmm.jello.co.uk", out: Host{"mmmm", "jello", "co.uk"}},
 		{in: "pressly.com", out: Host{"", "pressly", "com"}},
 		{in: "www.pressly.it", out: Host{"www", "pressly", "it"}},
+		{in: "sub.www.google.co.uk", out: Host{"sub.www", "google", "co.uk"}},
 	}
 
 	extract, _ := New("/tmp/tld.cache")

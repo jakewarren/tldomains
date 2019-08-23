@@ -69,7 +69,11 @@ func (extract *tldomains) Parse(host string) Host {
 		} else if h.Root == "" {
 			h.Root = p
 		} else {
-			h.Subdomain = p
+			if h.Subdomain == "" {
+				h.Subdomain = p
+			} else {
+				h.Subdomain = p + "." + h.Subdomain
+			}
 		}
 	}
 
@@ -77,7 +81,6 @@ func (extract *tldomains) Parse(host string) Host {
 }
 
 func download() ([]byte, error) {
-
 	u := "https://publicsuffix.org/list/public_suffix_list.dat"
 	resp, err := http.Get(u)
 	if err != nil {
